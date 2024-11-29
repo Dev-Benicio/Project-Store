@@ -4,8 +4,8 @@ public class Calcado extends Produto {
   private int numero;
   private String tipo;
 
-  public Calcado(String nome, Double preco, String descricao, String imagem, int numero, String tipo) {
-    super(nome, preco, descricao, imagem);
+  public Calcado(String nome, Double preco, String descricao, int numero, String tipo) {
+    super(nome, preco, descricao);
     this.numero = numero;
     this.tipo = tipo;
   }

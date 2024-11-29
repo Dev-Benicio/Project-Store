@@ -16,6 +16,18 @@ public class Pedido {
   public Pedido() {
   }
 
+  public String adicionarProduto(Produto produto, int quantidade) {
+      Double valor_final =  produto.getPreco() * quantidade;
+      return "<----- Dados do Pedido ----->\n"
+          + "Data: " + this.getData() + "\n"
+          + "Produto: " + this.getProduto().getNome() + "\n"
+          + "Valor: " + getProduto().getPreco() + "\n"
+          + "Quantidade: " + quantidade + "\n"
+          + "Valor Final: " + valor_final + "\n"
+          + "Forma de Pagamento: " + this.getForma_pagamento() + "\n"
+          + "------------------------------";
+  }
+
   public String getData() {
     return data;
   }

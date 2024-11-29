@@ -4,8 +4,8 @@ public class Roupa extends Produto {
   private Double tamanho;
   private String material;
 
-  public Roupa(String nome, Double preco, String descricao, String imagem, Double tamanho, String material) {
-    super(nome, preco, descricao, imagem);
+  public Roupa(String nome, Double preco, String descricao, Double tamanho, String material) {
+    super(nome, preco, descricao);
     this.tamanho = tamanho;
     this.material = material;
   }

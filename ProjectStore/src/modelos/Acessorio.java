@@ -3,8 +3,8 @@ package modelos;
 public class Acessorio extends Produto {
   private String tipo;
 
-  public Acessorio(String nome, Double preco, String descricao, String imagem, String tipo) {
-    super(nome, preco, descricao, imagem);
+  public Acessorio(String nome, Double preco, String descricao, String tipo) {
+    super(nome, preco, descricao);
     this.tipo = tipo;
   }
 
