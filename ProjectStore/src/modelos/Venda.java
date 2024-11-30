@@ -1,19 +1,19 @@
 package modelos;
 
-public class Pedido {
+public class Venda {
   private String data;
   private String itens;
   private String forma_pagamento;
   private Produto produto;
 
-  public Pedido(String data, String itens, String forma_pagamento, Produto produto) {
+  public Venda(String data, String itens, String forma_pagamento, Produto produto) {
     this.data = data;
     this.itens = itens;
     this.forma_pagamento = forma_pagamento;
     this.produto = produto;
   }
 
-  public Pedido() {
+  public Venda() {
   }
 
   public String adicionarProduto(Produto produto, int quantidade) {

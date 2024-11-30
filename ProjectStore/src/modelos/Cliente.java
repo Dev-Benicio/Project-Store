@@ -4,9 +4,9 @@ public class Cliente {
   private String nome;
   private String endereco;
   private String telefone;
-  private Pedido pedido;
+  private Venda pedido;
 
-  public Cliente(String nome, String endereco, String telefone, Pedido pedido) {
+  public Cliente(String nome, String endereco, String telefone, Venda pedido) {
     this.nome = nome;
     this.endereco = endereco;
     this.telefone = telefone;
@@ -40,11 +40,11 @@ public class Cliente {
     this.telefone = telefone;
   }
 
-  public Pedido getPedido() {
+  public Venda getPedido() {
     return pedido;
   }
 
-  public void setPedido(Pedido pedido) {
+  public void setPedido(Venda pedido) {
     this.pedido = pedido;
   }
 }
