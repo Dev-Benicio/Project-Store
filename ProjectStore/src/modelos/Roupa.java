@@ -1,13 +1,15 @@
 package modelos;
 
 public class Roupa extends Produto {
-  private Double tamanho;
+  private String tamanho;
   private String material;
+  private String marca;
 
-  public Roupa(String nome, Double preco, String descricao, Double tamanho, String material) {
+  public Roupa(String nome, Double preco, String descricao, String tamanho, String material, String marca) {
     super(nome, preco, descricao);
     this.tamanho = tamanho;
     this.material = material;
+    this.marca = marca;
   }
 
   public Roupa() {
@@ -20,14 +22,16 @@ public class Roupa extends Produto {
       + "\nPreco: " + getPreco() 
       + "\nDescricao: " + getDescricao()
       + "\nTamanho: " + getTamanho() 
-      + "\nMaterial: " + getMaterial();
+      + "\nMaterial: " + getMaterial()
+      + "\nMarca: " + getMarca()
+    ;
   }
 
-  public Double getTamanho() {
+  public String getTamanho() {
     return tamanho;
   }
 
-  public void setTamanho(Double tamanho) {
+  public void setTamanho(String tamanho) {
     this.tamanho = tamanho;
   }
 
@@ -37,5 +41,13 @@ public class Roupa extends Produto {
 
   public void setMaterial(String material) {
     this.material = material;
+  }
+
+  public String getMarca() {
+    return marca;
+  }
+
+  public void setMarca(String marca) {
+    this.marca = marca;
   }
 }

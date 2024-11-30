@@ -1,15 +1,14 @@
 package modelos;
 
 public class Venda {
-  private String data;
-  private String itens;
-  private String forma_pagamento;
+  private String data_venda;
+  private Double valor_venda;
+  private String metodo_pagamento;
   private Produto produto;
 
-  public Venda(String data, String itens, String forma_pagamento, Produto produto) {
-    this.data = data;
-    this.itens = itens;
-    this.forma_pagamento = forma_pagamento;
+  public Venda(String data_venda, String metodo_pagamento, Produto produto) {
+    this.data_venda = data_venda;
+    this.metodo_pagamento = metodo_pagamento;
     this.produto = produto;
   }
 
@@ -17,39 +16,39 @@ public class Venda {
   }
 
   public String adicionarProduto(Produto produto, int quantidade) {
-      Double valor_final =  produto.getPreco() * quantidade;
-      return "<----- Dados do Pedido ----->\n"
-          + "Data: " + this.getData() + "\n"
-          + "Produto: " + this.getProduto().getNome() + "\n"
-          + "Valor: " + getProduto().getPreco() + "\n"
-          + "Quantidade: " + quantidade + "\n"
-          + "Valor Final: " + valor_final + "\n"
-          + "Forma de Pagamento: " + this.getForma_pagamento() + "\n"
-          + "------------------------------";
+    this.valor_venda = produto.getPreco() * quantidade;
+    return "<----- Dados do Pedido ----->\n"
+        + "Data: " + this.getData() + "\n"
+        + "Produto: " + this.getProduto().getNome() + "\n"
+        + "Valor: " + getProduto().getPreco() + "\n"
+        + "Quantidade: " + quantidade + "\n"
+        + "Valor Final: " + valor_venda + "\n"
+        + "Metodo de Pagamento: " + this.getMetodo_pagamento() + "\n"
+        + "------------------------------";
   }
 
   public String getData() {
-    return data;
+    return data_venda;
   }
 
-  public void setData(String data) {
-    this.data = data;
+  public void setData(String data_venda) {
+    this.data_venda = data_venda;
   }
 
-  public String getItens() {
-    return itens;
+  public Double getValor_venda() {
+    return valor_venda;
   }
 
-  public void setItens(String itens) {
-    this.itens = itens;
+  public void setValor_venda(Double valor_venda) {
+    this.valor_venda = valor_venda;
   }
 
-  public String getForma_pagamento() {
-    return forma_pagamento;
+  public String getMetodo_pagamento() {
+    return metodo_pagamento;
   }
 
-  public void setForma_pagamento(String forma_pagamento) {
-    this.forma_pagamento = forma_pagamento;
+  public void setMetodo_pagamento(String metodo_pagamento) {
+    this.metodo_pagamento = metodo_pagamento;
   }
 
   public Produto getProduto() {

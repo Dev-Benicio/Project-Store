@@ -2,10 +2,12 @@ package modelos;
 
 public class Acessorio extends Produto {
   private String tipo;
+  private String material;
 
-  public Acessorio(String nome, Double preco, String descricao, String tipo) {
+  public Acessorio(String nome, Double preco, String descricao, String tipo, String material) {
     super(nome, preco, descricao);
     this.tipo = tipo;
+    this.material = material;
   }
 
   public Acessorio() {
@@ -17,7 +19,17 @@ public class Acessorio extends Produto {
       +"\nNome: " + getNome() 
       + "\nPreco: " + getPreco() 
       + "\nDescricao: " + getDescricao()
-      + "\nTipo: " + getTipo();
+      + "\nTipo: " + getTipo()
+      + "\nMaterial: " + getMaterial()
+    ;
+  }
+
+  public String getMaterial() {
+    return material;
+  }
+
+  public void setMaterial(String material) {
+    this.material = material;
   }
 
   public String getTipo() {
