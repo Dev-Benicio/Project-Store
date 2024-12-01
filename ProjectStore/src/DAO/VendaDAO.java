@@ -1,7 +1,8 @@
 package DAO;
 
+import modelos.Atendente;
+import modelos.Cliente;
 import modelos.Venda;
-import modelos.Produto;
 import connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,12 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VendaDAO {
-  private static final String ProdutoDAO = null;
     protected static Connection conexao;
     protected static PreparedStatement stmt;
     protected static ResultSet rs;
   
-    public static int grava(Venda venda, int opcao, int idProduto) throws Exception {
+    public static int grava(Venda venda, int opcao, int idProduto, int idCliente, int idAtendente) throws Exception {
       int id = 0;
       String colunaProduto;
 
@@ -35,7 +35,7 @@ public class VendaDAO {
       }
       try {
         String sql = "INSERT INTO venda (data_venda, valor_venda, metodo_pagamento, " + colunaProduto
-            + ") VALUES (?, ?, ?, ?)";
+            + ", id_cliente, id_atendente) VALUES (?, ?, ?, ?, ?, ?)";
         conexao = ConnectionFactory.getConnection();
         stmt = conexao.prepareStatement(sql);
         stmt.setString(1, venda.getData());
@@ -54,6 +54,8 @@ public class VendaDAO {
             break;
         }
 
+        stmt.setInt(5, idCliente);
+        stmt.setInt(6, idAtendente);
         id = stmt.executeUpdate();
         rs.close();
         stmt.close();
@@ -80,13 +82,19 @@ public class VendaDAO {
           return venda;
       }
       try {
-        String sql = "SELECT * FROM venda WHERE " + colunaProduto + " = ?";
+        Cliente cliente = new Cliente();
+        Atendente atendente = new Atendente();
+
+        String sql = "SELECT * FROM venda  WHERE " + colunaProduto + " = ?";
         conexao = ConnectionFactory.getConnection();
         stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, idProduto);
+        stmt.setString(2, cliente.getNome());
+        stmt.setString(3, atendente.getNome());
         rs = stmt.executeQuery();
         while (rs.next()) {
-          Venda vendas = new Venda();
+          Venda vendas = new Venda(); 
+
           vendas.setData(rs.getString("data_venda"));
           vendas.setValor_venda(rs.getDouble("valor_venda"));
           vendas.setMetodo_pagamento(rs.getString("metodo_pagamento"));
@@ -101,6 +109,10 @@ public class VendaDAO {
               vendas.setProduto(AcessorioDAO.leUm(idProduto));
               break;
           }
+          int idCliente = rs.getInt("id_cliente");
+          int idAtendente = rs.getInt("id_atendente");
+          vendas.setCliente(ClienteDAO.leUm(idCliente));
+          vendas.setAtendente(AtendenteDAO.leUm(idAtendente));
           venda.add(vendas);
         }
         rs.close();
@@ -138,6 +150,8 @@ public class VendaDAO {
           venda.setData(rs.getString("data_venda"));
           venda.setValor_venda(rs.getDouble("valor_venda"));
           venda.setMetodo_pagamento(rs.getString("metodo_pagamento"));
+          venda.setCliente(ClienteDAO.leUm(rs.getInt("id_cliente")));
+          venda.setAtendente(AtendenteDAO.leUm(rs.getInt("id_atendente")));
           switch (opcao) {
             case 1:
               venda.setProduto(RoupaDAO.leUm(idProduto));
@@ -158,8 +172,8 @@ public class VendaDAO {
       return venda;
     }
 
-    public static int altera(int id, Venda venda, int opcao, int idProduto) throws Exception {
-      int id = 0;
+    public static int altera(int id, Venda venda, int opcao, int idProduto, int idCliente, int idAtendente) throws Exception {
+      int ret = 0;
       String colunaProduto;
       switch (opcao) {
         case 1:
@@ -176,7 +190,7 @@ public class VendaDAO {
       }
       try {
         String sql = "UPDATE venda SET data_venda = ?, valor_venda = ?, metodo_pagamento = ?, "
-            + colunaProduto + " = ? WHERE id_venda = ?";
+            + colunaProduto + " = ?, id_cliente = ?, id_atendente = ? WHERE id_venda = ?";
         conexao = ConnectionFactory.getConnection();
         stmt = conexao.prepareStatement(sql);
         stmt.setString(1, venda.getData());
@@ -195,13 +209,15 @@ public class VendaDAO {
             break;
         }
 
+        stmt.setInt(5, idCliente);
+        stmt.setInt(6, idAtendente);
         stmt.setInt(5, id);
-        id = stmt.executeUpdate();
+        ret = stmt.executeUpdate();
         stmt.close();
       } catch (SQLException e) {
         e.printStackTrace();
       }
-      return id;
+      return ret;
     }
     
     public static int exclui(int id) throws Exception {
@@ -223,7 +239,7 @@ public class VendaDAO {
       return id;
     }
 
-    public static List<Venda> pesquisaletraTipo(String tipo, int opcao, int idProduto) throws Exception {
+    public static List<Venda> pesquisaletraMetodo(String letra, int opcao, int idProduto) throws Exception {
       List<Venda> venda = new ArrayList<Venda>();
       String colunaProduto;
       switch (opcao) {
@@ -240,17 +256,19 @@ public class VendaDAO {
           return venda;
       }
       try {
-        String sql = "SELECT * FROM venda WHERE " + colunaProduto + " = ? LIKE tipo = ?";
+        String sql = "SELECT * FROM venda WHERE " + colunaProduto + " = ? LIKE metodo_pagamento = ?";
         conexao = ConnectionFactory.getConnection();
         stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, idProduto);
-        stmt.setString(2, tipo);
+        stmt.setString(2, letra);
         rs = stmt.executeQuery();
         while (rs.next()) {
           Venda vendas = new Venda();
           vendas.setData(rs.getString("data_venda"));
           vendas.setValor_venda(rs.getDouble("valor_venda"));
           vendas.setMetodo_pagamento(rs.getString("metodo_pagamento"));
+          vendas.setCliente(ClienteDAO.leUm(rs.getInt("id_cliente")));
+          vendas.setAtendente(AtendenteDAO.leUm(rs.getInt("id_atendente")));
           switch (opcao) {
             case 1:
               vendas.setProduto(RoupaDAO.leUm(idProduto));
@@ -319,6 +337,9 @@ public class VendaDAO {
               vendas.setProduto(AcessorioDAO.leUm(idProduto));
               break;
           }
+
+          vendas.setCliente(ClienteDAO.leUm(rs.getInt("id_cliente")));
+          vendas.setAtendente(AtendenteDAO.leUm(rs.getInt("id_atendente")));
           venda.add(vendas);
         }
         rs.close();
@@ -370,6 +391,8 @@ public class VendaDAO {
               vendas.setProduto(AcessorioDAO.leUm(idProduto));
               break;
           }
+          vendas.setCliente(ClienteDAO.leUm(rs.getInt("id_cliente")));
+          vendas.setAtendente(AtendenteDAO.leUm(rs.getInt("id_atendente")));
           venda.add(vendas);
         }
         rs.close();
@@ -381,9 +404,11 @@ public class VendaDAO {
     }
 
     // Altera utilizando NOT IN(?,?)
-    public static int alteraNotIn(int id, Venda venda, int opcao, int idProduto) throws Exception {
+    public static int alteraNotIn(int id, Venda venda, int opcao, int idProduto, int idMin, int idMax, int idCliente,
+        int idAtendente) throws Exception {
       int id_rs = 0;
       String colunaProduto;
+
       switch (opcao) {
         case 1:
           colunaProduto = "id_roupa";
@@ -397,33 +422,28 @@ public class VendaDAO {
         default:
           return 0;
       }
+
       try {
         String sql = "UPDATE venda SET data_venda = ?, valor_venda = ?, metodo_pagamento = ?, "
-            + colunaProduto + " = ? WHERE id_venda = ? AND " + colunaProduto + " NOT IN (?,?)";
+            + colunaProduto + " = ?, id_cliente = ?, id_atendente = ? "
+            + "WHERE id_venda = ? AND " + colunaProduto + " NOT IN (?,?)";
+
         conexao = ConnectionFactory.getConnection();
         stmt = conexao.prepareStatement(sql);
+
         stmt.setString(1, venda.getData());
         stmt.setDouble(2, venda.getValor_venda());
         stmt.setString(3, venda.getMetodo_pagamento());
+        stmt.setInt(4, idProduto);
+        stmt.setInt(5, idCliente);
+        stmt.setInt(6, idAtendente);
+        stmt.setInt(7, id);
+        stmt.setInt(8, idMin);
+        stmt.setInt(9, idMax);
 
-        switch (opcao) {
-          case 1:
-            stmt.setInt(4, idProduto);
-            stmt.setInt(5, idProduto);
-            break;
-          case 2:
-            stmt.setInt(4, idProduto);
-            stmt.setInt(5, idProduto);
-            break;
-          case 3:
-            stmt.setInt(4, idProduto);
-            stmt.setInt(5, idProduto);
-            break;
-        }
-
-        stmt.setInt(6, id);
         id_rs = stmt.executeUpdate();
         stmt.close();
+
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -459,17 +479,15 @@ public class VendaDAO {
         switch (opcao) {
           case 1:
             stmt.setInt(4, idProduto);
-            stmt.setInt(5, idProduto);
             break;
           case 2:
             stmt.setInt(4, idProduto);
-            stmt.setInt(5, idProduto);
             break;
           case 3:
             stmt.setInt(4, idProduto);
-            stmt.setInt(5, idProduto);
             break;
         }
+        stmt.setInt(5, id);
         id_rs = stmt.executeUpdate();
         stmt.close();
       } catch (SQLException e) {

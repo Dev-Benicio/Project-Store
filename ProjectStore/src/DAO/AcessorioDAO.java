@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util. ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AcessorioDAO {
@@ -26,16 +26,15 @@ public class AcessorioDAO {
       stmt.setString(4, acessorio.getTipo());
       stmt.setString(5, acessorio.getMaterial());
       id = stmt.executeUpdate();
-      stmt.getGeneratedKeys();
       rs.close();
       stmt.close();
     } catch (SQLException e) {
-      
+
     }
     return id;
   }
 
-  public static List<Acessorio> leTodos() throws Exception  {
+  public static List<Acessorio> leTodos() throws Exception {
     List<Acessorio> acessorio = new ArrayList<Acessorio>();
     try {
       String sql = "SELECT * FROM acessorio";

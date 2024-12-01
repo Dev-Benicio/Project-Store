@@ -5,11 +5,15 @@ public class Venda {
   private Double valor_venda;
   private String metodo_pagamento;
   private Produto produto;
+  private Cliente cliente;
+  private Atendente atendente;
 
-  public Venda(String data_venda, String metodo_pagamento, Produto produto) {
+  public Venda(String data_venda, String metodo_pagamento, Produto produto, Cliente cliente, Atendente atendente) {
     this.data_venda = data_venda;
     this.metodo_pagamento = metodo_pagamento;
     this.produto = produto;
+    this.cliente = cliente;
+    this.atendente = atendente;
   }
 
   public Venda() {
@@ -25,6 +29,22 @@ public class Venda {
         + "Valor Final: " + valor_venda + "\n"
         + "Metodo de Pagamento: " + this.getMetodo_pagamento() + "\n"
         + "------------------------------";
+  }
+
+  public Cliente getCliente() {
+    return cliente;
+  }
+
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
+  }
+
+  public Atendente getAtendente() {
+    return atendente;
+  }
+
+  public void setAtendente(Atendente atendente) {
+    this.atendente = atendente;
   }
 
   public String getData() {
