@@ -16,7 +16,7 @@ public class MainSelect {
     System.out.println("<--------- PESQUISA POR MULTIPLOS IDS (IN)--------->");
     System.out.println(ClienteDAO.pesquisaPorMultiplosIds(1, 2, 3));
 
-    System.out.println("<--------- PESQUISA POR ID FORA DO INTERVALO (NOT BETWEEN) --------->");
-    System.out.println(ClienteDAO.pesquisaPorIdForaIntervalo(1, 5));
+    System.out.println("<--------- PESQUISA TODOS QUE ESTÃO FORA DO INTERVALO DESSES ID (NOT BETWEEN) --------->");
+    System.out.println(ClienteDAO.pesquisaPorIdForaIntervalo(3, 5));
   }
 }

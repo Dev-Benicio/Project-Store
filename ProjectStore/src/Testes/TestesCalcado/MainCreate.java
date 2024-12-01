@@ -1,12 +1,12 @@
 package Testes.TestesCalcado;
 
-import DAO.AcessorioDAO;
-import modelos.Acessorio;
+import modelos.Calcado;
+import DAO.CalcadoDAO;
 
 public class MainCreate {
   public static void main(String[] args) throws Exception {
     System.out.println("<--------- CRIAR --------->");
-    Acessorio joia = new Acessorio("Joia", 29.99, "Joia para festas no palacio", "Joia", "Ouro");
-    AcessorioDAO.grava(joia);
+    Calcado tenis = new Calcado("Tenis", 78.2, "Tenis para corrida", 41, "Tenis", "Nike");
+    CalcadoDAO.grava(tenis);
   }
 }

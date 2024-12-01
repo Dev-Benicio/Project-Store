@@ -11,6 +11,8 @@ public class Cliente {
     this.nome = nome;
     this.endereco = endereco;
     this.telefone = telefone;
+    this.cpf = cpf;
+    this.numero_residencia = numero_residencia;
   }
 
   public Cliente() {
@@ -18,13 +20,12 @@ public class Cliente {
 
   public String toString() {
     return "\n<------------ Cliente ------------>\n"
-        + "Nome: "+getNome()
-        + "\nCPF: "+getCpf()
-        + "\nTelefone: "+getTelefone()
-        + "\nEndereco: "+getEndereco()
-        + "\nNumero Residencia: "+getNumero_residencia()
-        + "\n<------------------------------------>"
-    ;
+        + "Nome: " + getNome()
+        + "\nCPF: " + getCpf()
+        + "\nTelefone: " + getTelefone()
+        + "\nEndereco: " + getEndereco()
+        + "\nNumero Residencia: " + getNumero_residencia()
+        + "\n<------------------------------------>";
   }
 
   public String getNome() {

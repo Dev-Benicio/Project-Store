@@ -1,10 +1,10 @@
 package Testes.TestesCalcado;
 
-import DAO.AcessorioDAO;
+import DAO.CalcadoDAO;
 
 public class MainDelete {
   public static void main(String[] args) throws Exception {
     System.out.println("<--------- DELETA CALÇADO --------->");
-    AcessorioDAO.exclui(1);
+    CalcadoDAO.exclui(3);
   }
 }

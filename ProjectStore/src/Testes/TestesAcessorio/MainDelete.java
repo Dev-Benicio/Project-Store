@@ -6,6 +6,6 @@ public class MainDelete {
   public static void main(String[] args) throws Exception {
     System.out.println("Acessorio");
     System.out.println("<--------- DELETA --------->");
-    AcessorioDAO.exclui(1);
+    AcessorioDAO.exclui(2);
   }
 }

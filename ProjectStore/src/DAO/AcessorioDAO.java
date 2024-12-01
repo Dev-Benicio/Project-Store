@@ -26,7 +26,6 @@ public class AcessorioDAO {
       stmt.setString(4, acessorio.getTipo());
       stmt.setString(5, acessorio.getMaterial());
       id = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
 
@@ -100,28 +99,24 @@ public class AcessorioDAO {
       rs.close();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return id;
   }
 
   public static int exclui(int id) throws Exception {
+      int ret = 0;
     try {
       String sql = "DELETE FROM acessorio WHERE id_acessorio = ?";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
       stmt.setInt(1, id);
-      stmt.executeUpdate();
-      rs = stmt.getGeneratedKeys();
-      if (rs.next()) {
-        id = rs.getInt(1);
-      }
-      rs.close();
+      ret = stmt.executeUpdate();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
-    return id;
+    return ret;
   }
 
   public static List<Acessorio> pesquisaPorNomeInicial(String letra) throws Exception {
@@ -227,7 +222,7 @@ public class AcessorioDAO {
       stmt.close();
 
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
 
     return ret;
@@ -244,7 +239,7 @@ public class AcessorioDAO {
       ret = stmt.executeUpdate();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return ret;
   }
@@ -262,7 +257,7 @@ public class AcessorioDAO {
       ret = stmt.executeUpdate();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return ret;
   }

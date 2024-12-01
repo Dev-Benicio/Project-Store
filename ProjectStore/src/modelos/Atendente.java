@@ -7,7 +7,7 @@ public class Atendente {
   private String turno;
   private String endereco;
 
-  public Atendente(String nome, String email, String cpf, String telefone, String turno, String endereco) {
+  public Atendente(String nome, String cpf, String telefone, String turno, String endereco) {
     this.nome = nome;
     this.cpf = cpf;
     this.telefone = telefone;

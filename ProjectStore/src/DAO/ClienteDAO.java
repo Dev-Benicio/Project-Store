@@ -17,7 +17,7 @@ public class ClienteDAO {
   public static int grava(Cliente cliente) throws Exception {
     int id = 0;
     try {
-      String sql = "INSERT INTO cliente (nome, email, telefone, endereco, bairro, cidade, estado, cep, ddd, fone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      String sql = "INSERT INTO cliente (nome, cpf, telefone, endereco, numero_residencia) VALUES (?, ?, ?, ?, ?)";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
       stmt.setString(1, cliente.getNome());
@@ -26,7 +26,6 @@ public class ClienteDAO {
       stmt.setString(4, cliente.getEndereco());
       stmt.setInt(5, cliente.getNumero_residencia());
       id = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -94,7 +93,6 @@ public class ClienteDAO {
       stmt.setInt(5, cliente.getNumero_residencia());
       stmt.setInt(6, id);
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -223,7 +221,7 @@ public class ClienteDAO {
   public static int atualizaNumeroResidencia(int novoNumero, String cpf) throws Exception {
     int ret = 0;
     try {
-      String sql = "UPDATE cliente SET material = ? WHERE cpf = ?";
+      String sql = "UPDATE cliente SET numero_residencia = ? WHERE cpf = ?";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
       stmt.setInt(1, novoNumero);

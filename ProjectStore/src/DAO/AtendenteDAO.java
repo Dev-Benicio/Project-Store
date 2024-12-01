@@ -93,10 +93,9 @@ public class AtendenteDAO {
       stmt.setString(5, atendente.getEndereco());
       stmt.setInt(6, id);
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return ret;
   }
@@ -109,10 +108,9 @@ public class AtendenteDAO {
       stmt = conexao.prepareStatement(sql);
       stmt.setInt(1, id);
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return ret;
   }
@@ -210,28 +208,26 @@ public class AtendenteDAO {
       stmt.setInt(3, idMax);
       
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return ret;
   }
   
-  public static int atualizaEndereco(String novoEndereco, int idMin, int idMax) throws Exception {
+  public static int atualizaEndereco(String novoEndereco, int id) throws Exception {
     int ret = 0;
     try {
       String sql = "UPDATE atendente SET endereco = ? WHERE id_atendente = ?";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
       stmt.setString(1, novoEndereco);
-      stmt.setInt(2, idMin);
+      stmt.setInt(2, id);
       
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return ret;
   }
@@ -247,10 +243,9 @@ public class AtendenteDAO {
       stmt.setString(3, cpf);
       
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return ret;
   }

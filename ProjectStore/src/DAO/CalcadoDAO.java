@@ -17,7 +17,7 @@ public class CalcadoDAO {
   public static int grava(Calcado calcado) throws Exception {
     int id = 0;
     try {
-      String sql = "INSERT INTO calcado (nome, preco, descricao, tipo, marca, numero) VALUES (?, ?, ?, ?, ?)";
+      String sql = "INSERT INTO calcado (nome, preco, descricao, tipo, marca, numero) VALUES (?, ?, ?, ?, ?, ?)";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
       stmt.setString(1, calcado.getNome());
@@ -27,11 +27,9 @@ public class CalcadoDAO {
       stmt.setString(5, calcado.getMarca());
       stmt.setInt(6, calcado.getNumero());
       id = stmt.executeUpdate();
-      stmt.getGeneratedKeys();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return id;
   }
@@ -86,6 +84,7 @@ public class CalcadoDAO {
   }
 
   public static int altera(int id, Calcado calcado) throws Exception {
+      int ret = 0;
     try {
       String sql = "UPDATE calcado SET nome = ?, preco = ?, descricao = ?, tipo = ?, marca = ?, numero = ? WHERE id_calcado = ?";
       conexao = ConnectionFactory.getConnection();
@@ -97,17 +96,12 @@ public class CalcadoDAO {
       stmt.setString(5, calcado.getMarca());
       stmt.setInt(6, calcado.getNumero());
       stmt.setInt(7, id);
-      stmt.executeUpdate();
-      rs = stmt.getGeneratedKeys();
-      if (rs.next()) {
-        id = rs.getInt(1);
-      }
-      rs.close();
+      ret = stmt.executeUpdate();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
-    return id;
+    return ret;
   }
 
   public static int exclui(int id) throws Exception {
@@ -117,11 +111,6 @@ public class CalcadoDAO {
       stmt = conexao.prepareStatement(sql);
       stmt.setInt(1, id);
       stmt.executeUpdate();
-      rs = stmt.getGeneratedKeys();
-      if (rs.next()) {
-        id = rs.getInt(1);
-      }
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -241,14 +230,14 @@ public class CalcadoDAO {
     return ret;
   }
 
-  public static int atualizaMarcaPorTipo(String novaMarca, String tipo) throws Exception {
+  public static int atualizaMarcaPorMarca(String novaMarca, String marca) throws Exception {
     int ret = 0;
     try {
-      String sql = "UPDATE calcado SET marca = ? WHERE tipo = ?";
+      String sql = "UPDATE calcado SET marca = ? WHERE marca = ?";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
       stmt.setString(1, novaMarca);
-      stmt.setString(2, tipo);
+      stmt.setString(2, marca);
       ret = stmt.executeUpdate();
       stmt.close();
     } catch (SQLException e) {
