@@ -6,17 +6,13 @@ public class Atendente {
   private String telefone;
   private String turno;
   private String endereco;
-  private Cliente cliente;
-  private Venda venda;
 
-  public Atendente(String nome, String email, String cpf, String telefone, String turno, String endereco, Cliente cliente, Venda venda) {
+  public Atendente(String nome, String email, String cpf, String telefone, String turno, String endereco) {
     this.nome = nome;
     this.cpf = cpf;
     this.telefone = telefone;
     this.turno = turno;
     this.endereco = endereco;
-    this.cliente = cliente;
-    this.venda = venda;
   }
 
   public Atendente() {
@@ -60,21 +56,5 @@ public class Atendente {
 
   public void setEndereco(String endereco) {
     this.endereco = endereco;
-  }
-
-  public Cliente getCliente() {
-    return cliente;
-  }
-
-  public void setCliente(Cliente cliente) {
-    this.cliente = cliente;
-  }
-
-  public Venda getVenda() {
-    return venda;
-  }
-
-  public void setVenda(Venda venda) {
-    this.venda = venda;
   }
 }

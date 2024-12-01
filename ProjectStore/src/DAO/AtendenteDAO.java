@@ -14,7 +14,7 @@ public class AtendenteDAO {
   protected static PreparedStatement stmt;
   protected static ResultSet rs;
 
-  public static int grava(Atendente atendente, int id_venda) throws Exception {
+  public static int grava(Atendente atendente) throws Exception {
     int id = 0;
     try {
       String sql = "INSERT INTO atendente (nome, cpf, telefone, turno, endereco) VALUES (?, ?, ?, ?, ?)";
@@ -26,10 +26,9 @@ public class AtendenteDAO {
       stmt.setString(4, atendente.getTurno());
       stmt.setString(5, atendente.getEndereco());
       id = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      
     }
     return id;
   }
