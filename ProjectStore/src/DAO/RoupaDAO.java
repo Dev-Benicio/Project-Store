@@ -28,7 +28,6 @@ public class RoupaDAO {
       stmt.setString(6, roupa.getMaterial());
 
       id = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -99,7 +98,6 @@ public class RoupaDAO {
       stmt.setString(6, roupa.getMaterial());
       stmt.setInt(7, id);
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -115,7 +113,6 @@ public class RoupaDAO {
       stmt = conexao.prepareStatement(sql);
       stmt.setInt(1, id);
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -216,7 +213,7 @@ public class RoupaDAO {
     int ret = 0;
 
     try {
-      String sql = "UPDATE roupa SET preco = ? WHERE tipo NOT IN (?,?,?)";
+      String sql = "UPDATE roupa SET preco = ? WHERE marca NOT IN (?,?,?)";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
 

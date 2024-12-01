@@ -5,18 +5,17 @@ import modelos.Roupa;
 
 public class MainUpdate {
   public static void main(String[] args) throws Exception {
-    System.out.println("Update Roupas");
     System.out.println("<------------- ATUALIZA UMA ROUPA ------------->");
-    Roupa camiseta = new Roupa("Camiseta", 100.00, "Uma camiseta de 100 reais", "10cm", "Alumínio", "Nike");
-    RoupaDAO.altera(1, camiseta);
+    Roupa camiseta = new Roupa("Camiseta", 800.00, "Uma camiseta de 800 reais", "PP", "Elastano", "Nike");
+    RoupaDAO.altera(2, camiseta);
 
     System.out.println("<------------- ATUALIZA UMA ROUPA (AND) ------------->");
-    RoupaDAO.atualizaDescricaoPrecoMaterial("camisa para festivais", 43.2, "algodão");
+    RoupaDAO.atualizaDescricaoPrecoMaterial("camisa para festivais", 43.2, "Aluminio");
 
     System.out.println("<------------- ATUALIZA UMA ROUPA ( = ) ------------->");
     RoupaDAO.atualizaMarcaPorTamanho("Adidas", "M");
     
     System.out.println("<------------- ATUALIZA UMA ROUPA (NOT IN) ------------->");
-    RoupaDAO.atualizaPrecoPorTiposExceto(100.00, "Camiseta", "Camiseta", "Camiseta");
+    RoupaDAO.atualizaPrecoPorTiposExceto(900.00, "Adidas", "Polo", "Thunder");
   }
 }

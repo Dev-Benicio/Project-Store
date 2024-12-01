@@ -108,7 +108,6 @@ public class ClienteDAO {
       stmt = conexao.prepareStatement(sql);
       stmt.setInt(1, id);
       ret = stmt.executeUpdate();
-      rs.close();
       stmt.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -194,16 +193,16 @@ public class ClienteDAO {
     return cliente;
   }
 
-  public static int atualizaPrecoPorTiposExceto(double novoPreco, int num1, int num2, int num3)
+  public static int atualizaNomePorEndereco(String nome, int num1, int num2, int num3)
       throws Exception {
     int ret = 0;
 
     try {
-      String sql = "UPDATE cliente SET preco = ? WHERE tipo NOT IN (?,?,?)";
+      String sql = "UPDATE cliente SET nome = ? WHERE numero_residencia NOT IN (?,?,?)";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
 
-      stmt.setDouble(1, novoPreco);
+      stmt.setString(1, nome);
       stmt.setInt(2, num1);
       stmt.setInt(3, num2);
       stmt.setInt(4, num3);
@@ -234,7 +233,7 @@ public class ClienteDAO {
     return ret;
   }
 
-  public static int atualizaCpf(String telefone, String nome, String cpf) throws Exception
+  public static int atualizaPorCpfNome(String telefone, String nome, String cpf) throws Exception
   {
     int ret = 0;
     try {

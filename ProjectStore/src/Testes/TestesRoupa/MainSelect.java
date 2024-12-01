@@ -18,6 +18,6 @@ public class MainSelect {
     System.out.println(RoupaDAO.pesquisaPorMultiplosIds(1, 4, 6));
     
     System.out.println("<------------- BUSCA ROUPAS COM NOME INICIAL (LIKE) ------------->");
-    System.out.println(RoupaDAO.pesquisaPorNomeInicial("b"));
+    System.out.println(RoupaDAO.pesquisaPorNomeInicial("C"));
   }
 }
