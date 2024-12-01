@@ -41,19 +41,7 @@ public class VendaDAO {
         stmt.setString(1, venda.getData());
         stmt.setDouble(2, venda.getValor_venda());
         stmt.setString(3, venda.getMetodo_pagamento());
-
-        switch (opcao) {
-          case 1:
-            stmt.setInt(4, idProduto);
-            break;
-          case 2:
-            stmt.setInt(4, idProduto);
-            break;
-          case 3:
-            stmt.setInt(4, idProduto);
-            break;
-        }
-
+        stmt.setInt(4, idProduto);
         stmt.setInt(5, idCliente);
         stmt.setInt(6, idAtendente);
         id = stmt.executeUpdate();
@@ -89,8 +77,6 @@ public class VendaDAO {
         conexao = ConnectionFactory.getConnection();
         stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, idProduto);
-        stmt.setString(2, cliente.getNome());
-        stmt.setString(3, atendente.getNome());
         rs = stmt.executeQuery();
         while (rs.next()) {
           Venda vendas = new Venda(); 
@@ -123,54 +109,41 @@ public class VendaDAO {
       return venda;
     }
 
-    public static Venda leUm(int id, int opcao, int idProduto) throws Exception {
+
+    public static Venda leUm(int id) throws Exception {    
       Venda venda = new Venda();
-      String colunaProduto;
-      switch (opcao) {
-        case 1:
-          colunaProduto = "id_roupa";
-          break;
-        case 2:
-          colunaProduto = "id_calcado";
-          break;
-        case 3:
-          colunaProduto = "id_acessorio";
-          break;
-        default:
-          return venda;
-      }
       try {
-        String sql = "SELECT * FROM venda WHERE id_venda = ? AND " + colunaProduto + " = ?";
+        // Consulta para buscar a venda e identificar o tipo de produto
+        String sql = "SELECT * FROM venda WHERE id_venda = ?";
         conexao = ConnectionFactory.getConnection();
         stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
-        stmt.setInt(2, idProduto);
+        
         rs = stmt.executeQuery();
-        while (rs.next()) {
-          venda.setData(rs.getString("data_venda"));
-          venda.setValor_venda(rs.getDouble("valor_venda"));
-          venda.setMetodo_pagamento(rs.getString("metodo_pagamento"));
-          venda.setCliente(ClienteDAO.leUm(rs.getInt("id_cliente")));
-          venda.setAtendente(AtendenteDAO.leUm(rs.getInt("id_atendente")));
-          switch (opcao) {
-            case 1:
-              venda.setProduto(RoupaDAO.leUm(idProduto));
-              break;
-            case 2:
-              venda.setProduto(CalcadoDAO.leUm(idProduto));
-              break;
-            case 3:
-              venda.setProduto(AcessorioDAO.leUm(idProduto));
-              break;
-          }
+        
+        if (rs.next()) {
+            venda.setData(rs.getString("data_venda"));
+            venda.setValor_venda(rs.getDouble("valor_venda"));
+            venda.setMetodo_pagamento(rs.getString("metodo_pagamento"));
+            venda.setCliente(ClienteDAO.leUm(rs.getInt("id_cliente")));
+            venda.setAtendente(AtendenteDAO.leUm(rs.getInt("id_atendente")));
+            
+            // Determinar o tipo de produto e buscar o produto específico
+            if (rs.getInt("id_roupa") != null) {
+                venda.setProduto(RoupaDAO.leUm(rs.getInt("id_roupa")));
+            } else if (rs.getInt("id_calcado") != null) {
+                venda.setProduto(CalcadoDAO.leUm(rs.getInt("id_calcado")));
+            } else if (rs.getInt("id_acessorio") != null) {
+                venda.setProduto(AcessorioDAO.leUm(rs.getInt("id_acessorio")));
+            }
         }
-        rs.close();
-        stmt.close();
-      } catch (SQLException e) {
+        rs.close;
+        stmt.close
+    } catch (SQLException e) {
         e.printStackTrace();
-      }
-      return venda;
-    }
+    }     
+    return venda;
+   }
 
     public static int altera(int id, Venda venda, int opcao, int idProduto, int idCliente, int idAtendente) throws Exception {
       int ret = 0;
