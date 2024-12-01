@@ -1,7 +1,5 @@
 package DAO;
 
-import modelos.Atendente;
-import modelos.Cliente;
 import modelos.Venda;
 import connection.ConnectionFactory;
 import java.sql.Connection;
@@ -70,8 +68,6 @@ public class VendaDAO {
           return venda;
       }
       try {
-        Cliente cliente = new Cliente();
-        Atendente atendente = new Atendente();
 
         String sql = "SELECT * FROM venda  WHERE " + colunaProduto + " = ?";
         conexao = ConnectionFactory.getConnection();
@@ -129,16 +125,16 @@ public class VendaDAO {
             venda.setAtendente(AtendenteDAO.leUm(rs.getInt("id_atendente")));
             
             // Determinar o tipo de produto e buscar o produto específico
-            if (rs.getInt("id_roupa") != null) {
+            if (rs.getInt("id_roupa") != 0) {
                 venda.setProduto(RoupaDAO.leUm(rs.getInt("id_roupa")));
-            } else if (rs.getInt("id_calcado") != null) {
+            } else if (rs.getInt("id_calcado") != 0) {
                 venda.setProduto(CalcadoDAO.leUm(rs.getInt("id_calcado")));
-            } else if (rs.getInt("id_acessorio") != null) {
+            } else if (rs.getInt("id_acessorio") != 0) {
                 venda.setProduto(AcessorioDAO.leUm(rs.getInt("id_acessorio")));
             }
         }
-        rs.close;
-        stmt.close
+        rs.close();
+        stmt.close();
     } catch (SQLException e) {
         e.printStackTrace();
     }     

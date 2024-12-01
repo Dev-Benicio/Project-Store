@@ -235,14 +235,14 @@ public class RoupaDAO {
     return ret;
   }
 
-  public static int atualizaMarcaPorTipo(String novaMarca, String tipo) throws Exception {
+  public static int atualizaMarcaPorTamanho(String novaMarca, String tamanho) throws Exception {
     int ret = 0;
     try {
-      String sql = "UPDATE roupa SET marca = ? WHERE tipo = ?";
+      String sql = "UPDATE roupa SET marca = ? WHERE tamanho = ?";
       conexao = ConnectionFactory.getConnection();
       stmt = conexao.prepareStatement(sql);
       stmt.setString(1, novaMarca);
-      stmt.setString(2, tipo);
+      stmt.setString(2, tamanho);
       ret = stmt.executeUpdate();
       stmt.close();
     } catch (SQLException e) {
