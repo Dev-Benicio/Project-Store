@@ -41,19 +41,7 @@ public class VendaDAO {
         stmt.setString(1, venda.getData());
         stmt.setDouble(2, venda.getValor_venda());
         stmt.setString(3, venda.getMetodo_pagamento());
-
-        switch (opcao) {
-          case 1:
-            stmt.setInt(4, idProduto);
-            break;
-          case 2:
-            stmt.setInt(4, idProduto);
-            break;
-          case 3:
-            stmt.setInt(4, idProduto);
-            break;
-        }
-
+        stmt.setInt(4, idProduto);
         stmt.setInt(5, idCliente);
         stmt.setInt(6, idAtendente);
         id = stmt.executeUpdate();
