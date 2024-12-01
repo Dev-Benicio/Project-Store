@@ -77,8 +77,6 @@ public class VendaDAO {
         conexao = ConnectionFactory.getConnection();
         stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, idProduto);
-        stmt.setString(2, cliente.getNome());
-        stmt.setString(3, atendente.getNome());
         rs = stmt.executeQuery();
         while (rs.next()) {
           Venda vendas = new Venda(); 
