@@ -196,7 +196,7 @@ public class ClienteDAO {
     return cliente;
   }
 
-  public static int atualizaPrecoPorTiposExceto(double novoPreco, String tipo1, String tipo2, String tipo3)
+  public static int atualizaPrecoPorTiposExceto(double novoPreco, int num1, int num2, int num3)
       throws Exception {
     int ret = 0;
 
@@ -206,9 +206,9 @@ public class ClienteDAO {
       stmt = conexao.prepareStatement(sql);
 
       stmt.setDouble(1, novoPreco);
-      stmt.setString(2, tipo1);
-      stmt.setString(3, tipo2);
-      stmt.setString(4, tipo3);
+      stmt.setInt(2, num1);
+      stmt.setInt(3, num2);
+      stmt.setInt(4, num3);
 
       ret = stmt.executeUpdate();
       stmt.close();

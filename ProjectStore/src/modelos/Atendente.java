@@ -18,6 +18,17 @@ public class Atendente {
   public Atendente() {
   }
 
+  public String toString() {
+    return "<------------ Atendente ------------>\n"
+        + "Nome: "+getNome()
+        + "\nCPF: "+getCpf()
+        + "\nTelefone: "+getTelefone()
+        + "\nTurno: "+getTurno()
+        + "\nEndereco: "+getEndereco()
+        + "\n<------------------------------------>"
+    ;
+  }
+
   public String getNome() {
     return nome;
   }

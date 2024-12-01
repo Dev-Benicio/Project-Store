@@ -6,16 +6,25 @@ public class Cliente {
   private String telefone;
   private String endereco;
   private int numero_residencia;
-  private Venda venda;
 
-  public Cliente(String nome, String endereco, String telefone, Venda venda) {
+  public Cliente(String nome, String endereco, String telefone, String cpf, int numero_residencia) {
     this.nome = nome;
     this.endereco = endereco;
     this.telefone = telefone;
-    this.venda = venda;
   }
 
   public Cliente() {
+  }
+
+  public String toString() {
+    return "\n<------------ Cliente ------------>\n"
+        + "Nome: "+getNome()
+        + "\nCPF: "+getCpf()
+        + "\nTelefone: "+getTelefone()
+        + "\nEndereco: "+getEndereco()
+        + "\nNumero Residencia: "+getNumero_residencia()
+        + "\n<------------------------------------>"
+    ;
   }
 
   public String getNome() {
@@ -40,14 +49,6 @@ public class Cliente {
 
   public void setTelefone(String telefone) {
     this.telefone = telefone;
-  }
-
-  public Venda getVenda() {
-    return venda;
-  }
-
-  public void setVenda(Venda venda) {
-    this.venda = venda;
   }
 
   public String getCpf() {
