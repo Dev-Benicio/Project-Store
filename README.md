@@ -48,7 +48,7 @@ enquanto continuo me desenvolvendo e descobrindo novas formas de construir aplic
      - USER: Seu usuário MySQL
      - PASS: Sua senha MySQL
 
-3. Execute o script SQL para criar as tabelas (disponível em `database/script.sql`)
+3. Execute o script SQL para criar as tabelas (disponível em `database/ProjectStoreA2.sql`)
 
 4. Execute as classes de teste:
    - No diretório 'Testes', você encontrará classes Main específicas para cada operação CRUD
