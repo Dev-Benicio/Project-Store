@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
     protected static ConnectionFactory connect;
-    protected final static String DRIVER = "com.mysql.jdbc.Driver";
-    protected final static String URL = "jdbc:mysql://localhost:3306/project_store";
-    protected final static String USER = "root";
-    protected final static String PASS = "";
+    protected final static String DRIVER = "com.mysql.jdbc.Driver"; // Driver para o MYSQL, mude caso usar outro BD
+    protected final static String URL = ""; // URL do Banco de Dados
+    protected final static String USER = ""; // Usuário para se conectar ao Banco de Dados
+    protected final static String PASS = "";  // Senha para se conectar ao Banco de Dados
 
     public static ConnectionFactory getInstance() {
         if (connect == null) {
