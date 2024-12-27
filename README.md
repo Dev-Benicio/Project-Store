@@ -16,6 +16,8 @@ enquanto continuo me desenvolvendo e descobrindo novas formas de construir aplic
 ### Tecnologias
 - Java
 - MySQL
+- Astah (Modelagem de Classes)
+- Lucidchart (Modelagem ER)
 
 ### Funcionalidades
 - Cadastrar Funcionarios
@@ -27,13 +29,22 @@ enquanto continuo me desenvolvendo e descobrindo novas formas de construir aplic
 - Visualizar Produtos
 - Visualizar Pedidos
 
-### Conceitos Implementados
-- Conexão basica com o Banco de Dados
-- CRUD de maniera mais tradicional
-- Polimofismo
-- Classe e Método Abstrato
-- Herança
-- Associação
+  
+### Conceitos e Documentação Implementados
+Conceitos de POO:
+   - Polimorfismo
+   - Classe e Método Abstrato
+   - Herança
+   - Associação
+     
+Persistência de Dados:
+   - Conexão com Banco de Dados
+   - CRUD tradicional
+     
+Modelagem do Sistema:
+   - Diagrama de Classes
+   - Diagrama de Entidade Relacionamento (DER)
+
 
 ### Como Executar o Projeto
 1. Pré-requisitos:
