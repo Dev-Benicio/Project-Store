@@ -7,7 +7,7 @@ possa atender aos clientes, cadastrar produtos, e registrar pedidos do cliente.
 ### Objetivo
 Este projeto foi desenvolvido como parte do curso técnico, seguindo uma metodologia mais tradicional da realização de um CRUD e da 
 conexão com banco de dados apresentada em sala de aula, com uma abordagem somente para entender como funciona um CRUD, criando uma
-classe Main para cada função do CRUD, como um teste unitário. Como estudante estou em busca de uma constante evolução, explorando tecnologias mais modernas 
+classe Main para cada função do CRUD, como um teste unitário. Como estudante estou em busca de uma evolução constante, explorando tecnologias mais modernas 
 como Spring Boot e padrões atuais de desenvolvimento.
 
 Embora mantenha a estrutura original do projeto que foi ensinado em sala de aula, ele representa um importante passo na minha jornada de aprendizado,
